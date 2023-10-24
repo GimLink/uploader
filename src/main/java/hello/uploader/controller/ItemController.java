@@ -30,7 +30,7 @@ public class ItemController {
     private final ItemRepository itemRepository;
     private final FileStore fileStore;
 
-    @GetMapping("/items-/new")
+    @GetMapping("/items/new")
     public String newItem(@ModelAttribute ItemForm form) {
         return "item-form";
     }
@@ -43,7 +43,7 @@ public class ItemController {
         //데이터베이스 저장
         Item item = new Item();
         item.setItemName(form.getItemName());
-        item.setAttachfile(attachFile);
+        item.setAttachFile(attachFile);
         item.setImageFiles(storeImageFiles);
         itemRepository.save(item);
 
@@ -68,8 +68,8 @@ public class ItemController {
     @GetMapping("/attach/{itemId}")
     public ResponseEntity<Resource> downloadAttach(@PathVariable Long itemId) throws MalformedURLException {
         Item item = itemRepository.findById(itemId);
-        String storeFileName = item.getAttachfile().getStoreFileName();
-        String uploadFileName = item.getAttachfile().getUploadFileName();
+        String storeFileName = item.getAttachFile().getStoreFileName();
+        String uploadFileName = item.getAttachFile().getUploadFileName();
 
         UrlResource urlResource = new UrlResource("file:" + fileStore.getFullPath(storeFileName));
 

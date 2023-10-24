@@ -9,7 +9,7 @@ public class Item {
 
     private String itemName;
     private Long id;
-    private UploadFile attachfile;
+    private UploadFile attachFile;
     private List<UploadFile> imageFiles;
 
 
