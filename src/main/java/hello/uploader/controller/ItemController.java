@@ -30,12 +30,12 @@ public class ItemController {
     private final ItemRepository itemRepository;
     private final FileStore fileStore;
 
-    @GetMapping("/items-new")
+    @GetMapping("/items-/new")
     public String newItem(@ModelAttribute ItemForm form) {
         return "item-form";
     }
 
-    @PostMapping("/items-new")
+    @PostMapping("/items/new")
     public String saveItem(@ModelAttribute ItemForm form, RedirectAttributes redirectAttributes) throws IOException {
         UploadFile attachFile = fileStore.storeFile(form.getAttachFile());
         List<UploadFile> storeImageFiles = fileStore.storeFiles(form.getImageFiles());
